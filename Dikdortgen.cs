@@ -3,25 +3,21 @@ namespace AlanHesaplama
 {
     public static class Dikdortgen
     {
-        public static void function()
-        {
-            double Boy = 0;
-            double En = 0;
-            double Alan = 0;
-            double Cevre = 0;
-            double Kosegen = 0;
-            double Theta = 0;
-            string Boy_s = "";
-            string En_s = "";
-            string Alan_s = "";
-            string Cevre_s = "";
-            string Kosegen_s = "";
-
+        public static List<double> Result_ls= new List<double>();
+        public static double Boy = 0;
+        public static double En = 0;
+        public static double Alan = 0;
+        public static double Cevre = 0;
+        public static double Kosegen = 0;
+        public static double Theta = 0;
+        public static void Quick_function(){
             MainClass.Property_ls = new List<string>(){"En ile boy","Köşegen uzunluğu ile köşegenlerin kendi aralarındaki yaptığı açı (geniş yada dar fark etmez)(derece)",
             "Alan ile boy","Alan ile En","Alan ile köşegen","Alan ile köşegenlerin kendi aralarındaki yaptığı açı (geniş yada dar fark etmez)(derece)",
             "Çevre ile boy","Çevre ile en","Çevre ile köşegen","Çevre ile köşegenlerin kendi aralarındaki yaptığı açı (geniş yada dar fark etmez)(derece)","Alan ile çevre"};
 
             MainClass.TryInput_property();
+            MainClass.set_KeyName = MainClass.Property_ls[MainClass.input-1];
+            
             
             switch(MainClass.input)
             {
@@ -108,8 +104,6 @@ namespace AlanHesaplama
                 break;
 
             }
-            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"En",En},{"Boy",Boy},{"Köşegen",Kosegen}};
-            MainClass.TryInput_ToCalculate();
             if (En > 0 && Boy > 0){
                 Alan = En * Boy;
                 Cevre = (En + Boy) * 2;
@@ -212,6 +206,20 @@ namespace AlanHesaplama
                 En = Cevre/2 - Boy;
                 Kosegen = Math.Sqrt(En*En + Boy*Boy);
             }
+            Result_ls = new List<double>(){Alan , Cevre};
+        }
+        public static void function()
+        {
+            Quick_function();
+            string Boy_s = "";
+            string En_s = "";
+            string Alan_s = "";
+            string Cevre_s = "";
+            string Kosegen_s = "";
+
+            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"En",En},{"Boy",Boy},{"Köşegen",Kosegen}};
+            MainClass.TryInput_ToCalculate();
+            
             // noktadan sonraki fazla rakamlardan kurtuluyoruz :)  ↓
             Boy_s = MainClass.GetRidOfZeros(Boy);
             En_s = MainClass.GetRidOfZeros(En);

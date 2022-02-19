@@ -1,24 +1,20 @@
 using System;
 namespace AlanHesaplama{
     public static class Sekizgen{
-        public static List<double> function()
+        public static List<double> Result_ls= new List<double>();
+        public static double Yaricap = 0;
+        public static double Kenar = 0;
+        public static double Yukseklik = 0;
+        public static double Uzun_Kosegen = 0;
+        public static double Cevre = 0;
+        public static double Alan = 0;
+        public static void Quick_function()
         {
-            double Yaricap = 0;
-            double Kenar = 0;
-            double Yukseklik = 0;
-            double Uzun_Kosegen = 0;
-            double Cevre = 0;
-            double Alan = 0;
-
-            string Yaricap_s ="";
-            string Yukseklik_s ="";
-            string Kenar_s="";
-            string Uzun_Kosegen_s = "";
-            string Cevre_s = "";
-            string Alan_s = "";
-
             MainClass.Property_ls = new List<string>(){"Kenar","Uzun köşegen","Yükseklik (iç yarıçap)","Yarıçap","Alan"};
             MainClass.TryInput_property();
+
+            MainClass.set_KeyName = MainClass.Property_ls[MainClass.input-1];
+            
 
             switch (MainClass.input)
             {
@@ -45,9 +41,6 @@ namespace AlanHesaplama{
                     Alan = MainClass.doubleConverter();
                 break;
             }
-            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"Kenar",Kenar},{"Uzun köşegen",Uzun_Kosegen},
-            {"Yükseklik (iç yarıçap)",Yukseklik},{"Yarıçap",Yaricap}};
-            MainClass.TryInput_ToCalculate();
             if (Kenar > 0){
                
                 Alan = 2*(1+Math.Sqrt(2))*Kenar*Kenar;
@@ -80,6 +73,23 @@ namespace AlanHesaplama{
             else if (Yukseklik > 0){
                 Kenar = Yukseklik /(Math.Sqrt((2*Math.Sin(3*Math.PI/8)*Math.Sin(3*Math.PI/8)-1/4)));
             }
+            Result_ls = new List<double>(){Alan,Cevre};
+        }
+        public static void function()
+        {
+            Quick_function();
+            string Yaricap_s ="";
+            string Yukseklik_s ="";
+            string Kenar_s="";
+            string Uzun_Kosegen_s = "";
+            string Cevre_s = "";
+            string Alan_s = "";
+
+            
+            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"Kenar",Kenar},{"Uzun köşegen",Uzun_Kosegen},
+            {"Yükseklik (iç yarıçap)",Yukseklik},{"Yarıçap",Yaricap}};
+            MainClass.TryInput_ToCalculate();
+            
             Kenar_s =MainClass. GetRidOfZeros(Kenar);
             Yukseklik_s = MainClass.GetRidOfZeros(Yukseklik);
             Yaricap_s = MainClass.GetRidOfZeros(Yaricap);
@@ -117,8 +127,6 @@ namespace AlanHesaplama{
                     Console.WriteLine(Yaricap_s); 
                 break;
             }
-            List<double> Result_ls= new List<double>(){Alan,Cevre};
-            return Result_ls;
         }
     }
 }

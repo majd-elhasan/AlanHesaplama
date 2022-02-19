@@ -1,26 +1,22 @@
 using System;
 namespace AlanHesaplama{
     public static class Altigen{
-        public static List<double> function()
+
+        public static List<double> Result_ls= new List<double>();
+        public static double Yaricap = 0;
+        public static double Kenar = 0;
+        public static double Yukseklik = 0;
+        public static double Kisa_Kosegen = 0;  // Kenar * Math.sqrt(3);
+        public static double Uzun_Kosegen = 0;  // 2 * Kenar
+        public static double Cevre = 0;
+        public static double Alan = 0;
+        public static void Quick_function()
         {
-            double Yaricap = 0;
-            double Kenar = 0;
-            double Yukseklik = 0;
-            double Kisa_Kosegen = 0;  // Kenar * Math.sqrt(3);
-            double Uzun_Kosegen = 0;  // 2 * Kenar
-            double Cevre = 0;
-            double Alan = 0;
-
-            string Yaricap_s ="";
-            string Yukseklik_s ="";
-            string Kenar_s="";
-            string Kisa_Kosegen_s = "";
-            string Uzun_Kosegen_s = "";
-            string Cevre_s = "";
-            string Alan_s = "";
-
             MainClass.Property_ls = new List<string>(){"Kenar","Kısa köşegen","Uzun köşegen","Yükseklik (iç yarıçap)","Yarıçap","Alan"};
             MainClass.TryInput_property();
+            
+            MainClass.set_KeyName = MainClass.Property_ls[MainClass.input-1];
+            
 
             switch (MainClass.input)
             {
@@ -52,9 +48,6 @@ namespace AlanHesaplama{
                     Alan = MainClass.doubleConverter();
                 break;
             }
-            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"Kenar",Kenar},{"Kısa köşegen",Kisa_Kosegen},{"Uzun köşegen",Uzun_Kosegen},
-            {"Yükseklik (iç yarıçap)",Yukseklik},{"Yarıçap",Yaricap}};
-            MainClass.TryInput_ToCalculate();
             if (Kenar > 0){
                 Alan =( 3 *Math.Sqrt(3)/2) *Kenar * Kenar;
                 Kisa_Kosegen = Kenar * Math.Sqrt(3);
@@ -104,6 +97,24 @@ namespace AlanHesaplama{
                 Cevre = 6*Kenar;
                 Yaricap = Kenar;
             }
+            Result_ls = new List<double>(){Alan,Cevre};
+        }
+        public static void function()
+        {
+            Quick_function();
+            string Yaricap_s ="";
+            string Yukseklik_s ="";
+            string Kenar_s="";
+            string Kisa_Kosegen_s = "";
+            string Uzun_Kosegen_s = "";
+            string Cevre_s = "";
+            string Alan_s = "";
+
+            
+            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"Kenar",Kenar},{"Kısa köşegen",Kisa_Kosegen},{"Uzun köşegen",Uzun_Kosegen},
+            {"Yükseklik (iç yarıçap)",Yukseklik},{"Yarıçap",Yaricap}};
+            MainClass.TryInput_ToCalculate();
+            
             Kenar_s = MainClass.GetRidOfZeros(Kenar);
             Yukseklik_s = MainClass.GetRidOfZeros(Yukseklik);
             Yaricap_s = MainClass.GetRidOfZeros(Yaricap);
@@ -146,9 +157,6 @@ namespace AlanHesaplama{
                     Console.WriteLine(Yaricap_s); 
                 break;
             }
-            List<double> Result_ls= new List<double>(){Alan,Cevre};
-            return Result_ls;
-
         }
     }
 }

@@ -3,24 +3,19 @@ namespace AlanHesaplama
 {
     public static class Ucgen
     {
-        public static List<double> function()
+        public static List<double> Result_ls= new List<double>();
+        public static double Taban = 0;
+        public static double Yukseklik = 0;
+        public static double A = 0;   // büyük harf ile gösterilen açı , küçük harfle gösterilen ise kenar uzunluğudur.
+        public static double B = 0;
+        public static double C = 0;
+        public static double a = 0;
+        public static double b = 0;
+        public static double c = 0;
+        public static double Cevre = 0;
+        public static double Alan = 0;
+        public static void Quick_function()
         {
-            
-            double Taban = 0;
-            double Yukseklik = 0;
-            double A = 0;   // büyük harf ile gösterilen açı , küçük harfle gösterilen ise kenar uzunluğudur.
-            double B = 0;
-            double C = 0;
-            double a = 0;
-            double b = 0;
-            double c = 0;
-            double Cevre = 0;
-            double Alan = 0;
-
-
-            string Alan_s = "";
-            string Cevre_s = "";
-
             MainClass.Property_ls = new List<string>(){"Taban Ve Yükseklik","Kenar uzunlukları","iki kenar ile aralarındaki açı","iki kenar ile birinin karşındaki açı"
             ,"iki açı ile aralarındaki kenar","iki açı ile birinin karşısındaki kenar"};
 
@@ -85,9 +80,6 @@ namespace AlanHesaplama
                     B = MainClass.doubleConverter()*180/Math.PI;
                 break;
             }
-            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre}};
-            MainClass.TryInput_ToCalculate();
-
             if (Taban > 0 && Yukseklik > 0){Alan = Taban*Yukseklik/2;}
             else if (a > 0 && b > 0 && c > 0 ){
                 Cevre = a + b + c; 
@@ -122,8 +114,19 @@ namespace AlanHesaplama
                 Cevre = a + b + c;
             }
             else if (Cevre > 0 ){Alan = Math.Sqrt((Cevre/2)*((Cevre/2)-a)*((Cevre/2)-b)*((Cevre/2)-c));}
+            Result_ls = new List<double>(){Alan,Cevre};
+        }
+        public static void function()
+        {
+            Quick_function();
+            string Alan_s = "";
+            string Cevre_s = "";
 
+            
+            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre}};
+            MainClass.TryInput_ToCalculate();
 
+            
             Alan_s = MainClass.GetRidOfZeros(Alan);
             Cevre_s = MainClass.GetRidOfZeros(Cevre);
             switch(MainClass.input)
@@ -138,8 +141,6 @@ namespace AlanHesaplama
                     Console.WriteLine(Cevre_s); 
                 break;
             }
-            List<double> Result_ls= new List<double>(){Alan,Cevre};
-            return Result_ls;
 
         }
     }

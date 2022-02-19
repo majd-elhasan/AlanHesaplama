@@ -2,89 +2,88 @@ using System;
 namespace AlanHesaplama{
     public static class Piramit{
         static short input=0;
-        static List<string> prism_shapes = new List<string>(){"Üçgen piramit","dörtgen piramit","Beşgen piramit","altıgen piramit","Yedigen piramit","Sekizgen piramit"};
+        static List<string> prism_shapes = new List<string>(){"Üçgen piramit","dikdörtgen piramit","Beşgen piramit","altıgen piramit","Yedigen piramit","Sekizgen piramit"};
         public static void function()
         {
-        /*         r * P/2  = S
-                   r : tabanın iç yarıçapı
-                   P : tananın çevresi
-                   S : tabanın alanı 
-        */
-            double Prizma_yuksekligi=0;
-            double Yan_Yuzey_Alani = 0; //   (yanal yüzey yüksekliği)² = r² + h²          r =2 * taban alanı / taban cevresi
-                                        // Yanal yüzey alanı = yanal yüzey yüksekliği * taban cevresi /2
-            double Yuzey_alani = 0;  // taban Çevresi *  prizma yüksekliği +  taban alanı
-            double Hacim = 0;  // taban alanı * prizma yüksekliği
+            double Piramit_yuksekligi=0;
+            double Yan_Yuzey_Alani = 0; 
+            double Yuzey_alani = 0;  
+            double Hacim = 0;  
 
             // taban 
             double Taban_Cevresi = 0;
             double Taban_Alani = 0;
                 //string
-            string Prizma_yuksekligi_s ="";
+            string Piramit_yuksekligi_s ="";
             string Yan_Yuzey_Alani_s = "";
             string Yuzey_alani_s = "";
             string Hacim_s = "";
 
             piramit_sec(); 
             // geri dödürülen değer dizisi {alan, çevre}
-            Console.WriteLine("prizmanın taban özellikleri ...."); 
-            switch(input)
+            Console.WriteLine("piramidin taban özellikleri ...."); 
+            switch(input)       //  Çokgen {alan,cevre}
             {
                 case 1 :    
-                      //  Çokgen {alan,cevre}
-                    Taban_Alani = Ucgen.function()[0];
-                    Taban_Cevresi = Ucgen.function()[1];
+                    Ucgen.Quick_function();
+                    Taban_Alani = Ucgen.Result_ls[0];
+                    Taban_Cevresi = Ucgen.Result_ls[1];
                 break;
-                case 2 :                
-                    Taban_Alani = Kare.function()[0];
-                    Taban_Cevresi = Kare.function()[1];
+                case 2 :   
+                    Kare.Quick_function();             
+                    Taban_Alani = Kare.Result_ls[0];
+                    Taban_Cevresi = Kare.Result_ls[1];
                 break;
-                case 3 :                
-                    Taban_Alani = Besgen.function()[0];
-                    Taban_Cevresi = Besgen.function()[1];
+                case 3 :  
+                    Besgen.Quick_function();              
+                    Taban_Alani = Besgen.Result_ls[0];
+                    Taban_Cevresi = Besgen.Result_ls[1];
                 break;
-                case 4 :                
-                    Taban_Alani = Altigen.function()[0];
-                    Taban_Cevresi = Altigen.function()[1];
+                case 4 :
+                    Altigen.Quick_function();
+                    Taban_Alani = Altigen.Result_ls[0];
+                    Taban_Cevresi = Altigen.Result_ls[1];
                 break;
-                case 5 :                
-                    Taban_Alani = Yedigen.function()[0];
-                    Taban_Cevresi = Yedigen.function()[1];
+                case 5 :   
+                    Yedigen.Quick_function();             
+                    Taban_Alani = Yedigen.Result_ls[0];
+                    Taban_Cevresi = Yedigen.Result_ls[1];
                 break;
                 case 6 :                
-                    Taban_Alani = Sekizgen.function()[0];
-                    Taban_Cevresi = Sekizgen.function()[1];
+                    Sekizgen.Quick_function();
+                    Taban_Alani = Sekizgen.Result_ls[0];
+                    Taban_Cevresi = Sekizgen.Result_ls[1];
                 break;
             }
-            Console.WriteLine("Prizmanın yüksekliğini giriniz.");
-            Prizma_yuksekligi = MainClass.doubleConverter();
+            Console.WriteLine("Piramidin yüksekliğini giriniz.");
+            Piramit_yuksekligi = MainClass.doubleConverter();
 
-            MainClass.ToCalculate_ls = new (){{"Prizmanın yan yüzey alanı",Yan_Yuzey_Alani},{"Prizmanın yüzey alanı",Yuzey_alani},{"prizmanın hacmi",Hacim}};
+            MainClass.ToCalculate_ls = new (){{"Piramidin yan yüzey alanı",Yan_Yuzey_Alani},{"Piramidin yüzey alanı",Yuzey_alani},{"Piramidin hacmi",Hacim}};
 
             MainClass.TryInput_ToCalculate();
 
-            Hacim = Taban_Alani * Prizma_yuksekligi /3;
-            Yuzey_alani =  Math.Sqrt( Math.Pow((2* Taban_Alani / Taban_Cevresi),2) + Math.Pow((Prizma_yuksekligi),2) )  * Taban_Cevresi / 2 + Taban_Alani;
+            Hacim = Taban_Alani * Piramit_yuksekligi /3;
+            Yuzey_alani =  Math.Sqrt( Math.Pow((2* Taban_Alani / Taban_Cevresi),2) + Math.Pow((Piramit_yuksekligi),2) )  * Taban_Cevresi / 2 + Taban_Alani;
             //   (yanal yüzey yüksekliği)² = r² + h²          r =2 * taban alanı / taban cevresi
                                         // Yanal yüzey alanı = yanal yüzey yüksekliği * taban cevresi /2
-            Yan_Yuzey_Alani =Math.Sqrt( Math.Pow((2* Taban_Alani / Taban_Cevresi),2) + Math.Pow((Prizma_yuksekligi),2) )  * Taban_Cevresi / 2 ;
+            Yan_Yuzey_Alani =Math.Sqrt( Math.Pow((2* Taban_Alani / Taban_Cevresi),2) + Math.Pow((Piramit_yuksekligi),2) )  * Taban_Cevresi / 2 ;
 
-            Prizma_yuksekligi_s = MainClass.GetRidOfZeros(Prizma_yuksekligi);
+            Piramit_yuksekligi_s = MainClass.GetRidOfZeros(Piramit_yuksekligi);
             Yan_Yuzey_Alani_s = MainClass.GetRidOfZeros(Yan_Yuzey_Alani);
             Yuzey_alani_s = MainClass.GetRidOfZeros(Yuzey_alani);
             Hacim_s = MainClass.GetRidOfZeros(Hacim);
 
             switch(MainClass.input){
                 case 1:
-                    Console.Write("Prizma yüksekliği  :  ");
-                    Console.WriteLine(Prizma_yuksekligi_s);    
+                    Console.Write("Piramidin yan yüzey alanı  :  ");
+                    Console.WriteLine(Yan_Yuzey_Alani_s);    
                 break;
                 case 2:
-                    Console.Write("Prizmanın yüzey alanı  :  ");
+                    Console.Write("Piramidin yüzey alanı  :  ");
                     Console.WriteLine(Yuzey_alani_s);    
                 break;
                 case 3:
-                    Console.Write("prizmanın hacmi  :  ");
+                    Console.Write("Piramidin hacmi  :  ");
                     Console.WriteLine(Hacim_s);    
                 break;
 

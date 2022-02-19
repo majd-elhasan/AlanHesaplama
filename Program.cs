@@ -3,6 +3,7 @@
  {
      public static class MainClass
      {
+         public static string set_KeyName ="";  //  past participle 'set' :)
         public static short input = 0;
         public static List<string> Property_ls = new List<string>();
         public static Dictionary<string,double> ToCalculate_ls = new Dictionary<string, double>();
@@ -22,8 +23,8 @@
             Console.WriteLine("Hesaplamak istediğiniz boyutu seçiniz.");
             foreach(var item in ToCalculate_ls)
             {
-                if(item.Value !=0 ){
-                    Console.WriteLine("   "+item.Key.PadRight(20)+ item.Value +"  olarak girildi.");
+                if(item.Key == set_KeyName){
+                    Console.WriteLine("   "+item.Key.PadRight(20) +item.Value + "   olarak girildi" );
                     counter ++;
                     continue;
                 }

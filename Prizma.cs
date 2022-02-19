@@ -2,7 +2,7 @@ using System;
 namespace AlanHesaplama{
     public static class Prizma{
         static short input=0;
-        static List<string> prism_shapes = new List<string>(){"Üçgenler prizması","dörtgenler prizması","Beşgenler prizması","altıgenler prizması","Yedigenler prizması","Sekizgenler prizması"};
+        static List<string> prism_shapes = new List<string>(){"Üçgenler prizması","dikdörtgenler prizması","Beşgenler prizması","altıgenler prizması","Yedigenler prizması","Sekizgenler prizması"};
         public static void function()
         {
             double Prizma_yuksekligi=0;
@@ -24,30 +24,35 @@ namespace AlanHesaplama{
             Console.WriteLine("prizmanın taban özellikleri ...."); 
             switch(input)
             {
-                case 1 :    
-                      //  Çokgen {alan,cevre}
-                    Taban_Alani = Ucgen.function()[0];
-                    Taban_Cevresi = Ucgen.function()[1];
+                 case 1 :    
+                    Ucgen.Quick_function();
+                    Taban_Alani = Ucgen.Result_ls[0];
+                    Taban_Cevresi = Ucgen.Result_ls[1];
                 break;
-                case 2 :                
-                    Taban_Alani = Kare.function()[0];
-                    Taban_Cevresi = Kare.function()[1];
+                case 2 :   
+                    Dikdortgen.Quick_function();             
+                    Taban_Alani = Dikdortgen.Result_ls[0];
+                    Taban_Cevresi = Dikdortgen.Result_ls[1];
                 break;
-                case 3 :                
-                    Taban_Alani = Besgen.function()[0];
-                    Taban_Cevresi = Besgen.function()[1];
+                case 3 :  
+                    Besgen.Quick_function();              
+                    Taban_Alani = Besgen.Result_ls[0];
+                    Taban_Cevresi = Besgen.Result_ls[1];
                 break;
-                case 4 :                
-                    Taban_Alani = Altigen.function()[0];
-                    Taban_Cevresi = Altigen.function()[1];
+                case 4 :
+                    Altigen.Quick_function();
+                    Taban_Alani = Altigen.Result_ls[0];
+                    Taban_Cevresi = Altigen.Result_ls[1];
                 break;
-                case 5 :                
-                    Taban_Alani = Yedigen.function()[0];
-                    Taban_Cevresi = Yedigen.function()[1];
+                case 5 :   
+                    Yedigen.Quick_function();             
+                    Taban_Alani = Yedigen.Result_ls[0];
+                    Taban_Cevresi = Yedigen.Result_ls[1];
                 break;
                 case 6 :                
-                    Taban_Alani = Sekizgen.function()[0];
-                    Taban_Cevresi = Sekizgen.function()[1];
+                    Sekizgen.Quick_function();
+                    Taban_Alani = Sekizgen.Result_ls[0];
+                    Taban_Cevresi = Sekizgen.Result_ls[1];
                 break;
             }
             Console.WriteLine("Prizmanın yüksekliğini giriniz.");
@@ -66,8 +71,8 @@ namespace AlanHesaplama{
 
             switch(MainClass.input){
                 case 1:
-                    Console.Write("Prizma yüksekliği  :  ");
-                    Console.WriteLine(Prizma_yuksekligi_s);    
+                    Console.Write("Prizmanın yan yüzey alanı  :  ");
+                    Console.WriteLine(Yan_Yuzey_Alani_s);    
                 break;
                 case 2:
                     Console.Write("Prizmanın yüzey alanı  :  ");

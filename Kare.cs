@@ -2,20 +2,19 @@ using System;
 namespace AlanHesaplama
 {
     public static class Kare {
-        public static List<double> function()
-        {
-            double Kenar = 0;
-            double Alan = 0;
-            double Cevre = 0;
-            double Kosegen = 0;
-            string Kenar_s = "";
-            string Alan_s = "";
-            string Cevre_s = "";
-            string Kosegen_s = "";
+        public static List<double> Result_ls= new List<double>(){};
+        public static double Kenar = 0;
+        public static double Alan = 0;
+        public static double Cevre = 0;
+        public static double Kosegen = 0;
+        public static void Quick_function(){
 
-           MainClass.Property_ls = new List<string>(){"Kenar","Köşegen","Alan","Çevre"};
+            MainClass.Property_ls = new List<string>(){"Kenar","Köşegen","Alan","Çevre"};
 
             MainClass.TryInput_property();
+
+            MainClass.set_KeyName = MainClass.Property_ls[MainClass.input-1];
+            
             
             switch(MainClass.input)
             {
@@ -39,8 +38,7 @@ namespace AlanHesaplama
                     Cevre = MainClass.doubleConverter();
                 break;
             }
-            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"Kenar",Kenar},{"Köşegen",Kosegen}};
-            MainClass.TryInput_ToCalculate();
+
             if (Kenar > 0){
                 Alan = Kenar*Kenar;
                 Cevre = 4* Kenar;
@@ -61,6 +59,20 @@ namespace AlanHesaplama
                 Kosegen = Kenar * Math.Sqrt(2);
                 Alan = Kenar*Kenar;
             }
+            Result_ls= new List<double>(){Alan,Cevre};
+        }
+        public static void function()
+        {
+            Quick_function();
+            
+            string Kenar_s = "";
+            string Alan_s = "";
+            string Cevre_s = "";
+            string Kosegen_s = "";
+
+            MainClass.ToCalculate_ls = new (){{"Alan",Alan}, {"Çevre",Cevre},{"Kenar",Kenar}, {"Köşegen",Kosegen}};
+            MainClass.TryInput_ToCalculate();
+           
             Kenar_s = MainClass.GetRidOfZeros(Kenar);
             Alan_s = MainClass.GetRidOfZeros(Alan);
             Cevre_s = MainClass.GetRidOfZeros(Cevre);
@@ -88,8 +100,7 @@ namespace AlanHesaplama
                     Console.WriteLine(Kosegen_s); 
                 break;
             }
-            List<double> Result_ls= new List<double>(){Alan,Cevre};
-            return Result_ls;
+            
         }
     }
 }
