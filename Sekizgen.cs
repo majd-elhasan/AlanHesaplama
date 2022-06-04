@@ -19,25 +19,25 @@ namespace AlanHesaplama{
             switch (MainClass.input)
             {
                 case 1 :
-                    Console.WriteLine("Yedigenin kenar uzunluğunu giriniz.");
+                    Console.WriteLine("sekizgenin kenar uzunluğunu giriniz.");
                     Kenar = MainClass.doubleConverter();
                 break;
 
                 case 2 :
-                    Console.WriteLine("Yedigenin Uzun köşegen uzunluğunu giriniz.");
+                    Console.WriteLine("sekizgenin Uzun köşegen uzunluğunu giriniz.");
                     Uzun_Kosegen = MainClass.doubleConverter();
                 break;
 
                 case 3 :
-                    Console.WriteLine("Yedigenin yüksekliğini (iç yarıçapını) giriniz.");
+                    Console.WriteLine("sekizgenin yüksekliğini (iç yarıçapını) giriniz.");
                     Yukseklik = MainClass.doubleConverter();
                 break;
                 case 4 :
-                    Console.WriteLine("Yedigenin Yarıçapını giriniz.");
+                    Console.WriteLine("sekizgenin Yarıçapını giriniz.");
                     Yaricap = MainClass.doubleConverter();
                 break;
                 case 5 :
-                    Console.WriteLine("Yedigenin alanını giriniz.");
+                    Console.WriteLine("sekizgenin alanını giriniz.");
                     Alan = MainClass.doubleConverter();
                 break;
             }
@@ -72,6 +72,10 @@ namespace AlanHesaplama{
             }
             else if (Yukseklik > 0){
                 Kenar = Yukseklik /(Math.Sqrt((2*Math.Sin(3*Math.PI/8)*Math.Sin(3*Math.PI/8)-1/4)));
+                Alan = 2*(1+Math.Sqrt(2))*Kenar*Kenar;
+                Cevre = 8*Kenar;
+                Yaricap = Kenar * Math.Sin(3*Math.PI /8) * Math.Sqrt(2);
+                Uzun_Kosegen = 2*Yaricap;
             }
             Result_ls = new List<double>(){Alan,Cevre};
         }
